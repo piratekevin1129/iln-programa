@@ -1,0 +1,594 @@
+#contenedor{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    background: #1e293b;
+    background: radial-gradient(#1e293b 0%, #1e293b 80%, #121b28 100%);
+}
+
+#cortina{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+}
+#cortina > div{
+    position: absolute;
+    width: 100%;
+    left: 0%;
+    background-color: #05101c;
+}
+#cortina > div:first-child{
+    top: 0%;
+}
+#cortina > div:last-child{
+    bottom: 0%;
+}
+.cortina-off > div{
+    height: 0%;
+    transition: height 0.5s ease-in;
+}
+.cortina-on > div{
+    height: 50%;
+    transition: height 0.5s ease-out;
+}
+
+.cortina-off{
+    visibility: hidden;
+    transition: visibility 0.5s;
+}
+.cortina-on{
+    visibility: visible;
+}
+
+#fondo{
+    position: absolute;
+    width: auto;
+    height: auto;
+    top: 0px;
+    left: 0px;
+    background: #9ad1f3;
+    background: linear-gradient(to bottom, #9ad1f3, #ffffff);
+}
+#carretera{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+}
+#carretera-canv{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+#montana{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+}
+.nube{
+    position: absolute;
+    width: 100%;
+    height: auto;
+}
+.nube > img:first-child{
+    position: relative;
+    width: auto;
+    height: auto;
+}
+.nube > img:last-child{
+    position: absolute;
+    width: auto;
+    height: auto;
+    left: 100%;
+    top: 0%;
+}
+
+.animacion-nube-1,
+.animacion-nube-2,
+.animacion-nube-3,
+.animacion-nube-4,
+.animacion-nube-5{
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-name: animacion-nube;
+}
+.animacion-nube-1{
+    animation-duration: 25s;
+}
+.animacion-nube-2{
+    animation-duration: 35s;
+}
+.animacion-nube-3{
+    animation-duration: 35s;
+}
+.animacion-nube-4{
+    animation-duration: 27s;
+}
+.animacion-nube-5{
+    animation-duration: 20s;
+}
+@keyframes animacion-nube{
+    0%{
+        left: -100%;
+    }
+    100%{
+        left: 0%;
+    }
+}
+
+@keyframes animacion-boton-over {
+    0%,50%,100%{
+        transform: translateX(0px);
+    }
+    25%{
+        transform: translateX(-2px);
+    }
+    75%{
+        transform: translateX(2px);
+    }
+}
+
+#cabina{
+    position: absolute;
+    width: 100%;
+    width: calc(100% + 50px);
+    width: -moz-calc(100% + 50px);
+    height: 100%;
+    top: 0px;
+    pointer-events: none;
+}
+
+#cabina-top,
+#cabina-bot{
+    position: absolute;
+    width: 100%;
+    height: auto;
+}
+#cabina-top{
+    top: 0px;
+}
+#cabina-bot{
+    bottom: 0px;
+}
+
+#cabina-top > img,
+#cabina-bot > img{
+    position: relative;
+    width: 100%;
+    height: auto;
+}
+
+#velocimetro{
+    position: absolute;
+    width: 7.72%;
+    height: 28.8%;
+    left: 17.34%;
+    top: 53.60%;
+}
+#aguja{
+    position: absolute;
+    width: 19.86%;
+    height: auto;
+    left: 40.39%;
+    top: 10.13%;
+    transform-origin: center 70%;
+}
+
+#mapa{
+    position: absolute;
+    width: 12.73%;
+    height: 28%;
+    top: 54%;
+    left: 43.63%;
+    border-radius: 4px;
+    overflow: hidden;
+}
+#mapa-img{
+    position: absolute;
+    width: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 200%;
+}
+
+
+#volante{
+    position: absolute;
+    width: 45.62%;
+    height: auto;
+    left: -2.55%;
+    bottom: -15%;
+    transform-origin: 52.69% 80%;
+}
+#volante-img{
+    position: relative;
+    width: 100%;
+    height: auto;
+}
+            
+#botones-container{
+    position: absolute;
+    width: 40%;
+    height: auto;
+    right: 2%;
+}
+.botones-container-off{
+    top: 100%;
+    transform: translateY(100%);
+
+    transition: top 0.5s ease-in 0.5s, transform 0.5s ease-in 0.5s;
+}
+.botones-container-on{
+    top: 98%;
+    transform: translateY(-100%);
+
+    transition: top 0.5s ease-out, transform 0.5s ease-out;
+}
+#botones-container > img{
+    position: relative;
+    width: 100%;
+    height: auto;
+}
+
+#botones{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding: 5%;
+    top: 0px;
+    left: 0px;
+}
+#botones > h4{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 40px;
+    font-family: 'Britannic-Bold';
+    font-size: 1.2rem;
+    color: #ffffff;
+    text-align: center;
+}
+.botones-grid{
+    position: relative;
+    width: 100%;
+    height: auto;
+    height: calc(100% - 40px);
+    height: -moz-calc(100% - 40px);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.botones-grid > button{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    height: 50%;
+    height: calc((100% - (15px * 3)) / 2);
+    height: -moz-calc((100% - (15px * 3)) / 2);
+    margin-top: 15px;
+    
+    border-radius: 8px;
+    border: #475569 solid 2px;
+    background: #283447;
+    background: linear-gradient(to bottom, #324054, #1f2a3c);
+    
+    transition: border 0.25s, transform 0.25s;
+}
+
+#boton-grid-1,
+#boton-grid-2,
+#boton-grid-3{
+    width: 33%;
+    width: calc((100% - (15px * 4)) / 3);
+    width: -moz-calc((100% - (15px * 4)) / 3);
+    margin-left: 15px;
+}
+#boton-grid-3{
+    margin-right: 15px;
+}
+#boton-grid-4,
+#boton-grid-5{
+    width: 50%;
+    width: calc((100% - (15px * 3)) / 2);
+    width: -moz-calc((100% - (15px * 3)) / 2);
+    margin-left: 15px;
+    margin-bottom: 15px;
+}
+#boton-grid-5{
+    margin-right: 15px;
+}
+
+.botones-grid > button > img{
+    width: auto;
+    height: 40%;
+    margin-bottom: 10px;
+}
+.botones-grid > button > p{
+    font-family: 'Britannic-Regular';
+    font-size: 1rem;
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 10px;
+}
+.botones-grid > button > div{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #05101c;
+}
+/*#96cc36*/
+
+.botones-grid > button:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+    border: #4cc1c8 solid 3px;
+}
+
+/**************************************/
+
+#modal,
+#instruccion{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    border: rgba(0,0,0,0) solid 1px;
+}
+#modal{
+    background-color: rgba(0,0,0,0.65);
+}
+#instruccion{
+    pointer-events: none;
+}
+.modal-off,.instruccion-off{
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 1s, opacity 1s;
+}
+.modal-on,.instruccion-on{
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 0s, opacity 1s;
+}
+#modal-box{
+    width: 50%;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+}
+
+#modal-title{
+    font-family: 'Britannic-Bold';
+    font-size: 2rem;
+    color: #96cc36;
+    text-align: center;
+    margin-bottom: 20px;
+}
+#modal-subtitle{
+    font-family: 'Inter-SemiBold';
+    font-size: 1.5rem;
+    color: #ffffff;
+    text-align: left;
+    margin-bottom: 10px;
+}
+#modal-text{
+    font-family: 'Inter-Regular';
+    font-size: 1.2rem;
+    color: #ffffff;
+    text-align: left;
+    margin-bottom: 20px;
+}
+#modal-boton{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+#modal-box button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    height: auto;
+    padding: 7px 15px;
+    border-radius: 4px;
+    color: #ffffff;
+    font-size: 1.1rem;
+    background-color: #4b85fd;
+    transition: background-color 0.25s;
+}
+
+#modal-box button:hover{
+    cursor: pointer;
+    background-color: #4576ce;
+    animation: animacion-boton-over 0.25s infinite forwards linear;
+}
+#modal-box button span:last-child{
+    font-family: 'Britannic-Regular';
+    margin-left: 5px;
+}
+
+#instruccion-txt{
+    width: 100%;
+    font-family: "Britannic-Bold";
+    font-size: 3rem;
+    color: #ffffff;
+    text-shadow: 0px 0px 5px rgba(0,0,0,1);
+    text-align: center;
+    margin: 100px 0px;
+}
+.instruccion-off #instruccion-txt{
+    transform: scale(2,1);
+    filter: blur(10px);
+    opacity: 0;
+    transition: transform 0.25s, filter 0.25s, opacity 0.25s;
+}
+.instruccion-on #instruccion-txt{
+    transform: scale(1);
+    filter: blur(0px);
+    opacity: 1;
+    transition: transform 1s, filter 1s, opacity 1s;
+}
+
+/**************************************/
+
+.carretera-velocidad{
+    filter: blur(3px);
+}
+
+.volante-normal{
+    animation: animacion-volante 3s infinite linear;
+}
+@keyframes animacion-volante{
+    0%,33.33%,66.66%,100%{
+        transform: rotate(0deg);
+    }
+    16.66%{
+        transform: rotate(-3deg);
+    }
+    50%{
+        transform: rotate(3deg);
+    }
+}
+.volante-velocidad{
+    animation: animacion-volante-velocidad 0.5s infinite linear;   
+}
+@keyframes animacion-volante-velocidad{
+    0%,50%,100%{
+        transform: rotate(0deg);
+    }
+    25%{
+        transform: rotate(-5deg);
+    }
+    75%{
+        transform: rotate(5deg);
+    }
+}
+.volante-wrong{
+    animation: animacion-volante-wrong 0.2s 1 linear forwards;
+}
+@keyframes animacion-volante-wrong{
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(-7deg);
+    }
+}
+
+.mapa-normal{
+    animation: animacion-mapa 5s linear infinite;
+}
+@keyframes animacion-mapa{
+    0%{
+        top: 0%;
+    }
+    100%{
+        top: -100%;
+    }
+}
+.mapa-velocidad{
+    animation: animacion-mapa 1s linear infinite;
+}
+.mapa-wrong{
+    animation: animacion-mapa 0.2s linear 1 forwards;
+}
+
+.aguja-normal{
+    animation: animacion-aguja 0.3s linear infinite;
+}
+@keyframes animacion-aguja{
+    0%,50%,100%{
+        transform: rotate(-45deg);
+    }
+    25%{
+        transform: rotate(-48deg);
+    }
+    75%{
+        transform: rotate(-42deg);
+    }
+}
+.aguja-velocidad{
+    animation: animacion-aguja-velocidad 0.2s linear infinite;
+}
+@keyframes animacion-aguja-velocidad{
+    0%,50%,100%{
+        transform: rotate(45deg);
+    }
+    25%{
+        transform: rotate(47deg);
+    }
+    75%{
+        transform: rotate(42deg);
+    }
+}
+.aguja-wrong{
+    animation: animacion-aguja-wrong 0.5s linear 1 forwards;
+}
+@keyframes animacion-aguja-wrong{
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(-150deg);
+    }
+}
+
+.cabina-normal{
+    left: -25px;
+}
+.cabina-wrong{
+    animation: animacion-cabina-wrong 1s 1 forwards linear;
+}
+@keyframes animacion-cabina-wrong{
+    0%{
+        left: -25px;
+    }
+    10%{
+        left: -50px;
+    }
+    20%{
+        left: -25px;
+    }
+    30%{
+        left: 0px;
+    }
+    40%{
+        left: -15px;
+    }
+    50%{
+        left: -30px;
+    }
+    60%{
+        left: -15px;
+    }
+    70%{
+        left: 0px;
+    }
+    80%{
+        left: -5px;
+    }
+    90%{
+        left: 0px;
+    }
+    100%{
+        left: -5px;
+    }
+}

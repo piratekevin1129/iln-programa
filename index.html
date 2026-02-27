@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto reporte</title>
+
+    <link href="assets/css/fonts.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/reset.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/loader.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/main.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/responsive.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div id="contenedor">
+        <div id="fondo">
+            <div id="nube-1" class="nube">
+                <img src="assets/images/nube-1.png" />
+                <img src="assets/images/nube-1.png" />
+            </div>
+            <div id="nube-2" class="nube">
+                <img src="assets/images/nube-2.png" />
+                <img src="assets/images/nube-2.png" />
+            </div>
+            <!--<div id="nube-3" class="nube">
+                <img src="assets/images/nube-3.png" />
+                <img src="assets/images/nube-3.png" />
+            </div>
+            <div id="nube-4" class="nube">
+                <img src="assets/images/nube-4.png" />
+                <img src="assets/images/nube-4.png" />
+            </div>
+            <div id="nube-5" class="nube">
+                <img src="assets/images/nube-5.png" />
+                <img src="assets/images/nube-5.png" />
+            </div>-->
+            <img id="montana" src="assets/images/montanas.png" />
+            <div id="carretera">
+                <canvas id="carretera-canv"></canvas>
+            </div>
+        </div>
+
+        <div id="modal" class="modal-off">
+            <div id="modal-box">
+                <h1 id="modal-title">...</h1>
+                <p id="modal-subtitle">...</p>
+                <p id="modal-text">...</p>
+                <div id="modal-boton">
+                    <button onclick="clickContinuar()">
+                        <span>Siguiente tramo</span>
+                        <span>→</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div id="cabina" class="cabina-normal">
+            <div id="cabina-top">
+                <img src="assets/images/cabina-top.png" />
+            </div>
+            <div id="cabina-bot">
+                <img src="assets/images/cabina.png" />
+                <div id="velocimetro">
+                    <img id="aguja" class="aguja-normal" src="assets/images/aguja.png" />
+                </div>
+                <div id="mapa">
+                    <img id="mapa-img" class="mapa-normal" src="assets/images/mapa.svg" />
+                </div>
+                <div id="volante" class="volante-normal">
+                    <img id="volante-img" src="assets/images/cabrilla.png" />
+                </div>
+            </div>
+        </div>
+
+        <div id="botones-container" class="botones-container-off">
+            <img src="assets/images/contenedor.png" />
+            <div id="botones">
+                <h4>Programas</h4>
+                <div class="botones-grid">
+                    <button type="button" id="boton-grid-1" onclick="clickOpcion(1)">
+                        <img src="assets/images/boton-1.svg" />
+                        <p>Control velocidad</p>
+                        <div></div>
+                    </button>
+                    <button type="button" id="boton-grid-2" onclick="clickOpcion(2)">
+                        <img src="assets/images/boton-2.svg" />
+                        <p>Anti fatiga</p>
+                        <div></div>
+                    </button>
+                    <button type="button" id="boton-grid-3" onclick="clickOpcion(3)">
+                        <img src="assets/images/boton-3.svg" />
+                        <p>Bloqueo distracción</p>
+                        <div></div>
+                    </button>
+                    <button type="button" id="boton-grid-4" onclick="clickOpcion(4)">
+                        <img src="assets/images/boton-4.svg" />
+                        <p>Cero tolerancia</p>
+                        <div></div>
+                    </button>
+                    <button type="button" id="boton-grid-5" onclick="clickOpcion(5)">
+                        <img src="assets/images/boton-5.svg" />
+                        <p>Radar vulnerables</p>
+                        <div></div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="cortina" class="cortina-off">
+        <div></div>
+        <div></div>
+    </div>
+
+    <div id="instruccion" class="instruccion-off">
+        <h1 id="instruccion-txt">...</h1>
+    </div>
+
+    <div id="loader" class="loader-on">
+        <div id="loader-img">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                <path fill="#999999" d="M286.7 96.1C291.7 113 282.1 130.9 265.2 135.9C185.9 159.5 128.1 233 128.1 320C128.1 426 214.1 512 320.1 512C426.1 512 512.1 426 512.1 320C512.1 233.1 454.3 159.6 375 135.9C358.1 130.9 348.4 113 353.5 96.1C358.6 79.2 376.4 69.5 393.3 74.6C498.9 106.1 576 204 576 320C576 461.4 461.4 576 320 576C178.6 576 64 461.4 64 320C64 204 141.1 106.1 246.9 74.6C263.8 69.6 281.7 79.2 286.7 96.1z" />
+            </svg>
+        </div>
+        <div id="loader-bar">
+            <div id="loader-bar2"></div>
+        </div>
+    </div>
+
+    <script src="assets/scripts/loader.js"></script>
+    <script src="assets/scripts/main.js"></script>
+    <script src="assets/scripts/animation.js"></script>
+
+    <script>
+        var car_mp3 = null;
+        var over_mp3 = null;
+        var click_mp3 = null;
+        var correct_mp3 = null;
+        var wrong_mp3 = null;
+
+        window.onload = function(){
+            setFondo()
+            setNubes()
+            loadTrack({src: 'assets/sounds/click.mp3', callBack: function(data){
+                over_mp3 = data
+                checkAudios(true)
+            }})
+            loadTrack({src: 'assets/sounds/car.mp3', callBack: function(data){
+                car_mp3 = data
+                checkAudios(true)
+            }})
+            loadTrack({src: 'assets/sounds/click.mp3', callBack: function(data){
+                click_mp3 = data
+                checkAudios(true)
+            }})
+            loadTrack({src: 'assets/sounds/correct.mp3', callBack: function(data){
+                correct_mp3 = data
+                checkAudios(true)
+            }})
+            loadTrack({src: 'assets/sounds/wrong.mp3', callBack: function(data){
+                wrong_mp3 = data
+                checkAudios(true)
+            }})
+        }
+
+        var animacion_comenzar = null;
+        function comenzarJuego(){
+            loadAnimation({
+                idname:'carretera',
+                canv:'carretera-canv',
+                width:ancho_fondo,
+                height:alto_fondo,
+                realw:'auto',
+                realh:'auto',
+                pos:0,
+                total:31,
+                folder:'assets/media/animation-2',
+                callBack:function(){
+                    //console.log("cargó animacion p3 celebrando")
+
+                    playAnimation(0,null,-1,false,null,70)
+                    unsetLoader()
+
+                    animacion_comenzar = setTimeout(function(){
+                        clearTimeout(animacion_comenzar)
+                        animacion_comenzar = null
+
+                        startGame()
+                    },2000)
+                }
+            })
+        }
+    </script>
+</body>
+</html>
