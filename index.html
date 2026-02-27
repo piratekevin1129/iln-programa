@@ -9,11 +9,14 @@
     <link href="assets/css/reset.css" rel="stylesheet" type="text/css" />
     <link href="assets/css/loader.css" rel="stylesheet" type="text/css" />
     <link href="assets/css/main.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/modal.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/casos.css" rel="stylesheet" type="text/css" />
     <link href="assets/css/responsive.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <div id="contenedor">
         <div id="fondo">
+            <img id="montana" src="assets/images/montanas.png" />
             <div id="nube-1" class="nube">
                 <img src="assets/images/nube-1.png" />
                 <img src="assets/images/nube-1.png" />
@@ -34,9 +37,11 @@
                 <img src="assets/images/nube-5.png" />
                 <img src="assets/images/nube-5.png" />
             </div>-->
-            <img id="montana" src="assets/images/montanas.png" />
             <div id="carretera">
                 <canvas id="carretera-canv"></canvas>
+            </div>
+            <div id="peatones" class="peatones-off">
+                <img id="peatones-img" src="assets/images/peatones.png" />
             </div>
         </div>
 
@@ -46,9 +51,13 @@
                 <p id="modal-subtitle">...</p>
                 <p id="modal-text">...</p>
                 <div id="modal-boton">
-                    <button onclick="clickContinuar()">
+                    <button id="modal-boton-siguiente" onclick="clickContinuar()">
                         <span>Siguiente tramo</span>
                         <span>→</span>
+                    </button>
+                    <button id="modal-boton-repetir" onclick="clickRepetir()">
+                        <span>Repetir</span>
+                        <span>←</span>
                     </button>
                 </div>
             </div>
@@ -64,11 +73,24 @@
                     <img id="aguja" class="aguja-normal" src="assets/images/aguja.png" />
                 </div>
                 <div id="mapa">
-                    <img id="mapa-img" class="mapa-normal" src="assets/images/mapa.svg" />
+                    <img id="mapa-img" class="mapa-normal" src="assets/images/mapa.jpg" />
                 </div>
                 <div id="volante" class="volante-normal">
                     <img id="volante-img" src="assets/images/cabrilla.png" />
                 </div>
+            </div>
+            <div id="ojos" class="ojos-off">
+                <div id="ojo1">
+                    <img src="assets/images/ojo.png" />
+                </div>
+                <div id="ojo2">
+                    <img src="assets/images/ojo.png" />
+                </div>
+                <div id="ojo3"></div>
+            </div>
+            <div id="celular" class="celular-off">
+                <div id="celular-onda"></div>
+                <img id="celular-img" src="assets/images/celular.png" />
             </div>
         </div>
 
@@ -77,27 +99,27 @@
             <div id="botones">
                 <h4>Programas</h4>
                 <div class="botones-grid">
-                    <button type="button" id="boton-grid-1" onclick="clickOpcion(1)">
+                    <button type="button" id="boton-grid-1" onclick="clickOpcion(1)" onmouseenter="overBtn()">
                         <img src="assets/images/boton-1.svg" />
                         <p>Control velocidad</p>
                         <div></div>
                     </button>
-                    <button type="button" id="boton-grid-2" onclick="clickOpcion(2)">
+                    <button type="button" id="boton-grid-2" onclick="clickOpcion(2)" onmouseenter="overBtn()">
                         <img src="assets/images/boton-2.svg" />
                         <p>Anti fatiga</p>
                         <div></div>
                     </button>
-                    <button type="button" id="boton-grid-3" onclick="clickOpcion(3)">
+                    <button type="button" id="boton-grid-3" onclick="clickOpcion(3)" onmouseenter="overBtn()">
                         <img src="assets/images/boton-3.svg" />
                         <p>Bloqueo distracción</p>
                         <div></div>
                     </button>
-                    <button type="button" id="boton-grid-4" onclick="clickOpcion(4)">
+                    <button type="button" id="boton-grid-4" onclick="clickOpcion(4)" onmouseenter="overBtn()">
                         <img src="assets/images/boton-4.svg" />
                         <p>Cero tolerancia</p>
                         <div></div>
                     </button>
-                    <button type="button" id="boton-grid-5" onclick="clickOpcion(5)">
+                    <button type="button" id="boton-grid-5" onclick="clickOpcion(5)" onmouseenter="overBtn()">
                         <img src="assets/images/boton-5.svg" />
                         <p>Radar vulnerables</p>
                         <div></div>
@@ -127,6 +149,7 @@
         </div>
     </div>
 
+    <script src="assets/casos.js"></script>
     <script src="assets/scripts/loader.js"></script>
     <script src="assets/scripts/main.js"></script>
     <script src="assets/scripts/animation.js"></script>
@@ -137,16 +160,21 @@
         var click_mp3 = null;
         var correct_mp3 = null;
         var wrong_mp3 = null;
+        var freno_mp3 = null;
+        var celular_mp3 = null;
+        var bostezo_mp3 = null;
+        var underground_mp3 = null;
 
         window.onload = function(){
             setFondo()
-            setNubes()
-            loadTrack({src: 'assets/sounds/click.mp3', callBack: function(data){
+            
+            loadTrack({src: 'assets/sounds/over.mp3', callBack: function(data){
                 over_mp3 = data
                 checkAudios(true)
             }})
             loadTrack({src: 'assets/sounds/car.mp3', callBack: function(data){
                 car_mp3 = data
+                car_mp3.loop = true
                 checkAudios(true)
             }})
             loadTrack({src: 'assets/sounds/click.mp3', callBack: function(data){
@@ -161,9 +189,27 @@
                 wrong_mp3 = data
                 checkAudios(true)
             }})
+            loadTrack({src: 'assets/sounds/freno.mp3', callBack: function(data){
+                freno_mp3 = data
+                checkAudios(true)
+            }})
+            loadTrack({src: 'assets/sounds/bostezo.mp3', callBack: function(data){
+                bostezo_mp3 = data
+                bostezo_mp3.loop = true
+                checkAudios(true)
+            }})
+            loadTrack({src: 'assets/sounds/celular.mp3', callBack: function(data){
+                celular_mp3 = data
+                celular_mp3.loop = true
+                checkAudios(true)
+            }})
+            loadTrack({src: 'assets/sounds/underground.mp3', callBack: function(data){
+                underground_mp3 = data
+                underground_mp3.loop = true
+                checkAudios(true)
+            }})
         }
 
-        var animacion_comenzar = null;
         function comenzarJuego(){
             loadAnimation({
                 idname:'carretera',
@@ -181,12 +227,8 @@
                     playAnimation(0,null,-1,false,null,70)
                     unsetLoader()
 
-                    animacion_comenzar = setTimeout(function(){
-                        clearTimeout(animacion_comenzar)
-                        animacion_comenzar = null
-
-                        startGame()
-                    },2000)
+                    startGame()
+                    underground_mp3.play()
                 }
             })
         }

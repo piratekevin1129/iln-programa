@@ -1,0 +1,106 @@
+/**************************************/
+
+#modal,
+#instruccion{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    border: rgba(0,0,0,0) solid 1px;
+}
+#modal{
+    background-color: rgba(0,0,0,0.65);
+}
+#instruccion{
+    pointer-events: none;
+}
+.modal-off,.instruccion-off{
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 1s, opacity 1s;
+}
+.modal-on,.instruccion-on{
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 0s, opacity 1s 0.5s;
+}
+#modal-box{
+    width: 50%;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+}
+
+#modal-title{
+    font-family: 'Britannic-Bold';
+    font-size: 2rem;
+    color: #96cc36;
+    text-align: center;
+    margin-bottom: 20px;
+}
+#modal-subtitle{
+    font-family: 'Inter-SemiBold';
+    font-size: 1.5rem;
+    color: #ffffff;
+    text-align: left;
+    margin-bottom: 10px;
+}
+#modal-text{
+    font-family: 'Inter-Regular';
+    font-size: 1.2rem;
+    color: #ffffff;
+    text-align: left;
+    margin-bottom: 20px;
+}
+#modal-boton{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+#modal-box button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    height: auto;
+    padding: 7px 15px;
+    border-radius: 4px;
+    color: #ffffff;
+    font-size: 1.1rem;
+    background-color: #4b85fd;
+    transition: background-color 0.25s;
+}
+
+#modal-box button:hover{
+    cursor: pointer;
+    background-color: #4576ce;
+    animation: animacion-boton-over 0.25s infinite forwards linear;
+}
+#modal-box button span:last-child{
+    font-family: 'Britannic-Regular';
+    margin-left: 5px;
+}
+
+#instruccion-txt{
+    width: 100%;
+    font-family: "Britannic-Bold";
+    font-size: 3rem;
+    color: #ffffff;
+    text-shadow: 0px 0px 5px rgba(0,0,0,1);
+    text-align: center;
+    margin: 100px 0px;
+}
+.instruccion-off #instruccion-txt{
+    transform: scale(2,1);
+    filter: blur(10px);
+    opacity: 0;
+    transition: transform 0.25s, filter 0.25s, opacity 0.25s;
+}
+.instruccion-on #instruccion-txt{
+    transform: scale(1);
+    filter: blur(0px);
+    opacity: 1;
+    transition: transform 1s 0.5s, filter 1s 0.5s, opacity 1s 0.5s;
+}

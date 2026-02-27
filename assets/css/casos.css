@@ -1,0 +1,196 @@
+/**************************************/
+
+.carretera-velocidad{
+    filter: blur(3px);
+}
+
+.volante-normal{
+    animation: animacion-volante 3s infinite linear;
+}
+@keyframes animacion-volante{
+    0%,33.33%,66.66%,100%{
+        transform: rotate(0deg);
+    }
+    16.66%{
+        transform: rotate(-3deg);
+    }
+    50%{
+        transform: rotate(3deg);
+    }
+}
+.volante-velocidad{
+    animation: animacion-volante-velocidad 0.5s infinite linear;   
+}
+@keyframes animacion-volante-velocidad{
+    0%,50%,100%{
+        transform: rotate(0deg);
+    }
+    25%{
+        transform: rotate(-5deg);
+    }
+    75%{
+        transform: rotate(5deg);
+    }
+}
+.volante-wrong{
+    animation: animacion-volante-wrong 0.2s 1 linear forwards;
+}
+@keyframes animacion-volante-wrong{
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(-7deg);
+    }
+}
+.volante-adulterada{
+    animation: animacion-volante-adulterada 3s infinite linear;
+}
+@keyframes animacion-volante-adulterada{
+    0%,50%,100%{
+        transform: rotate(0deg);
+    }
+    10%,40%{
+        transform: rotate(-7deg);
+    }
+    60%,90%{
+        transform: rotate(7deg);
+    }
+}
+
+.mapa-normal{
+    animation: animacion-mapa 5s linear infinite;
+}
+@keyframes animacion-mapa{
+    0%{
+        top: 0%;
+    }
+    100%{
+        top: -100%;
+    }
+}
+.mapa-velocidad{
+    animation: animacion-mapa 1s linear infinite;
+}
+.mapa-wrong{
+    animation: animacion-mapa 0.2s linear 1 forwards;
+}
+
+.aguja-normal{
+    animation: animacion-aguja 0.3s linear infinite;
+}
+@keyframes animacion-aguja{
+    0%,50%,100%{
+        transform: rotate(-45deg);
+    }
+    25%{
+        transform: rotate(-48deg);
+    }
+    75%{
+        transform: rotate(-42deg);
+    }
+}
+.aguja-velocidad{
+    animation: animacion-aguja-velocidad 0.2s linear infinite;
+}
+@keyframes animacion-aguja-velocidad{
+    0%,50%,100%{
+        transform: rotate(45deg);
+    }
+    25%{
+        transform: rotate(47deg);
+    }
+    75%{
+        transform: rotate(42deg);
+    }
+}
+.aguja-wrong{
+    animation: animacion-aguja-wrong 0.5s linear 1 forwards;
+}
+@keyframes animacion-aguja-wrong{
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(-150deg);
+    }
+}
+
+.cabina-normal{
+    left: -25px;
+}
+.cabina-wrong{
+    animation: animacion-cabina-wrong 1s 1 forwards linear;
+}
+@keyframes animacion-cabina-wrong{
+    0%{
+        left: -25px;
+    }
+    10%{
+        left: -50px;
+    }
+    20%{
+        left: -25px;
+    }
+    30%{
+        left: 0px;
+    }
+    40%{
+        left: -15px;
+    }
+    50%{
+        left: -30px;
+    }
+    60%{
+        left: -15px;
+    }
+    70%{
+        left: 0px;
+    }
+    80%{
+        left: -5px;
+    }
+    90%{
+        left: 0px;
+    }
+    100%{
+        left: -5px;
+    }
+}
+.cabina-adulterada{
+    animation: 
+        animacion-cabina-adulterada 3s infinite linear, 
+        animacion-cabina-adulterada2 5s infinite step-end,
+        animacion-cabina-adulterada3 5s infinite linear;
+}
+@keyframes animacion-cabina-adulterada{
+    0%,50%,100%{
+        left: -25px;
+    }
+    25%{
+        left: -50px;
+    }
+    75%{
+        left: 0px;
+    }
+}
+@keyframes animacion-cabina-adulterada2{
+    0%,50%,100%{
+        filter: blur(0px);
+    }
+    25%{
+        filter: blur(5px);
+    }
+}
+@keyframes animacion-cabina-adulterada3{
+    0%,50%,100%{
+        transform: scale(1.05);
+    }
+    25%{
+        transform: scale(1.1);
+    }
+}
+.cabina-borrosa{
+    filter: blur(5px);
+    animation: animacion-cabina-adulterada 3s infinite linear;
+}

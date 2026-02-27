@@ -1,6 +1,6 @@
-var total_audios = 5;
+var total_audios = 9;
 var total_images = 0;
-var total_extra = 21;
+var total_extra = 31;
 var total_files = (total_audios + total_images + total_extra)
 
 var files_loaded = 0
