@@ -374,7 +374,7 @@
         transform: scale(1);
     }
     50%{
-        transform: scale(1.2);
+        transform: scale(1.02);
     }
 }
 
@@ -433,6 +433,7 @@
 }
 
 .botones-grid > button{
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -448,12 +449,6 @@
     background: linear-gradient(to bottom, #324054, #1f2a3c);
     
     transition: border 0.25s, transform 0.25s;
-}
-.boton-grid-show{
-    display: flex;
-}
-.boton-grid-hide{
-    display: none;
 }
 
 #boton-grid-1,

@@ -51,13 +51,13 @@
                 <p id="modal-subtitle">...</p>
                 <p id="modal-text">...</p>
                 <div id="modal-boton">
-                    <button id="modal-boton-siguiente" onclick="clickContinuar()">
-                        <span>Siguiente tramo</span>
-                        <span>→</span>
-                    </button>
-                    <button id="modal-boton-repetir" onclick="clickRepetir()">
+                    <button id="modal-boton-repetir" class="modal-btn-hide" onclick="clickRepetir()">
                         <span>Repetir</span>
                         <span>←</span>
+                    </button>
+                    <button id="modal-boton-siguiente" class="modal-btn-show" onclick="clickContinuar()">
+                        <span>Siguiente tramo</span>
+                        <span>→</span>
                     </button>
                 </div>
             </div>
@@ -165,9 +165,19 @@
         var bostezo_mp3 = null;
         var underground_mp3 = null;
 
+        var intro_mp3 = null;
+        var audio1_mp3 = null;
+        var audio2_mp3 = null;
+        var audio3_mp3 = null;
+        var audio4_mp3 = null;
+        var audio5_mp3 = null;
+
+        var global_audio = null;
+        var audios_data = [];
+
         window.onload = function(){
             setFondo()
-            
+
             loadTrack({src: 'assets/sounds/over.mp3', callBack: function(data){
                 over_mp3 = data
                 checkAudios(true)
@@ -208,9 +218,36 @@
                 underground_mp3.loop = true
                 checkAudios(true)
             }})
+
+            loadTrack({src: 'assets/audios/intro.mp3', callBack: function(data){
+                intro_mp3 = data
+                checkAudios(true)
+            }})
+            loadTrack({src: 'assets/audios/1.mp3', callBack: function(data){
+                audio1_mp3 = data
+                checkAudios(true)
+            }})
+            loadTrack({src: 'assets/audios/2.mp3', callBack: function(data){
+                audio2_mp3 = data
+                checkAudios(true)
+            }})
+            loadTrack({src: 'assets/audios/3.mp3', callBack: function(data){
+                audio3_mp3 = data
+                checkAudios(true)
+            }})
+            loadTrack({src: 'assets/audios/4.mp3', callBack: function(data){
+                audio4_mp3 = data
+                checkAudios(true)
+            }})
+            loadTrack({src: 'assets/audios/5.mp3', callBack: function(data){
+                audio5_mp3 = data
+                checkAudios(true)
+            }})
         }
 
         function comenzarJuego(){
+            audios_data = [audio1_mp3,audio2_mp3,audio3_mp3,audio4_mp3,audio5_mp3]
+
             loadAnimation({
                 idname:'carretera',
                 canv:'carretera-canv',
@@ -229,6 +266,7 @@
 
                     startGame()
                     underground_mp3.play()
+                    intro_mp3.play()
                 }
             })
         }

@@ -63,10 +63,10 @@
 }
 @keyframes animacion-mapa{
     0%{
-        top: 0%;
+        top: -100%;
     }
     100%{
-        top: -100%;
+        top: 0%;
     }
 }
 .mapa-velocidad{
@@ -175,7 +175,7 @@
     }
 }
 @keyframes animacion-cabina-adulterada2{
-    0%,50%,100%{
+    0%,75%,100%{
         filter: blur(0px);
     }
     25%{
@@ -183,7 +183,7 @@
     }
 }
 @keyframes animacion-cabina-adulterada3{
-    0%,50%,100%{
+    0%,75%,100%{
         transform: scale(1.05);
     }
     25%{

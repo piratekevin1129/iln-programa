@@ -25,7 +25,7 @@ function setFondo(){
         var n = getRand(1,total_nubes)
         var check_n = false
         for(j = 0;j<nubes_animacion.length;j++){
-            if(nubes_animacion[j]==nu){
+            if(nubes_animacion[j]==n){
                 check_n = true
             }
         }
@@ -34,10 +34,10 @@ function setFondo(){
         }
     }
 
-    for(i = 0;i<nubes_animacion.length;i++){
-        getE('nube-'+nubes_animacion[i]).style.top = String(getRand(0,20))+'%'
-        getE('nube-'+nubes_animacion[i]).style.transform = 'translateX('+getRand(0,70)+'%)'
-        getE('nube-'+nubes_animacion[i]).className = 'nube animacion-nube-'+getRand(1,5)
+    for(j = 0;j<nubes_animacion.length;j++){
+        getE('nube-'+nubes_animacion[j]).style.top = String(getRand(0,20))+'%'
+        getE('nube-'+nubes_animacion[j]).style.transform = 'translateX('+getRand(0,70)+'%)'
+        getE('nube-'+nubes_animacion[j]).className = 'nube animacion-nube-'+getRand(1,5)
     }
     
     var ancho = window.innerWidth
@@ -99,7 +99,7 @@ function setCaso(){
     
         getE('instruccion-txt').innerHTML = casos[actual_caso].nombre
         getE('instruccion').className = 'instruccion-on'
-    
+        
         if(casos[actual_caso].id==1){
             stopAnimation(0,true)
             playAnimation(0,null,-1,false,null,50)
@@ -127,13 +127,14 @@ function setCaso(){
     
             getE('botones-container').className = 'botones-container-on'
         },2000)
+
         car_mp3.play()
     },500)
 }
 
 function clickOpcion(o){
     getE('instruccion').className = 'instruccion-off'
-
+    
     if(o==casos[actual_caso].correct){
         getE('cortina').className = 'cortina-on'
         animacion_cortina = setTimeout(function(){
@@ -169,14 +170,17 @@ function clickOpcion(o){
             getE('modal-title').innerHTML = casos[actual_caso].title
             getE('modal-subtitle').innerHTML = casos[actual_caso].subtitle
             getE('modal-text').innerHTML = casos[actual_caso].text
-            getE('modal-boton-siguiente').className = 'boton-grid-show'
-            getE('modal-boton-repetir').className = 'boton-grid-hide'
+            getE('modal-boton-siguiente').className = 'modal-btn-show'
+            getE('modal-boton-repetir').className = 'modal-btn-hide'
             getE('modal').className = 'modal-on'
 
-            getE('boton-grid-'+casos[actual_caso].id).className = 'active'
+            getE('boton-grid-'+casos[actual_caso].correct).className = 'active'
             casos[i].visto = true
 
             getE('botones-container').className = 'botones-container-off'
+            global_audio = audios_data[casos[actual_caso].correct-1]
+            global_audio.currentTime = 0
+            global_audio.play()
         },500)
     }else{
         stopAnimation(0,true)
@@ -203,8 +207,8 @@ function clickOpcion(o){
             getE('modal-title').innerHTML = 'Respuesta Incorrecta'
             getE('modal-subtitle').innerHTML = 'No seleccionaste la opción correcta'
             getE('modal-text').innerHTML = 'Volvamos a intentarlo'
-            getE('modal-boton-repetir').className = 'boton-grid-show'
-            getE('modal-boton-siguiente').className = 'boton-grid-hide'
+            getE('modal-boton-repetir').className = 'modal-btn-show'
+            getE('modal-boton-siguiente').className = 'modal-btn-hide'
             getE('modal').className = 'modal-on'
         },1000)
     }
@@ -212,6 +216,9 @@ function clickOpcion(o){
 
 var animacion_modal = null;
 function clickContinuar(){
+    if(global_audio!=null){
+        global_audio.pause()
+    }
     getE('modal').className = 'modal-off'
     //parar locucion
     animacion_modal = setTimeout(function(){
@@ -224,7 +231,13 @@ function clickContinuar(){
             animacion_comenzar = null
 
             actual_caso_ind++;
-            setCaso()
+            if(actual_caso_ind==casos.length){
+                stopAnimation(0,true)
+                alert("terminamos")
+                //poner mensaje final
+            }else{
+                setCaso()
+            }
         },3000)
     },1000)
     click_mp3.play()
@@ -246,13 +259,16 @@ function clickRepetir(){
         getE('ojos').className = 'ojos-off'
         getE('celular').className = 'celular-off'
         getE('peatones').className = 'peatones-off'
+        playAnimation(0,null,-1)
 
         //reiniciar botones contenedor
-        for(i = 0;i<casos.length;i++){
-            getE('boton-grid-'+casos[i].id).removeAttribute('class')
-            casos[i].visto = false
+        for(j = 0;j<casos.length;j++){
+            getE('boton-grid-'+casos[j].id).removeAttribute('class')
+            //console.log(casos[j])
+            casos[j].visto = false
         }
         getE('cortina').className = 'cortina-off'
-
+        startGame()
     },1000)
+    click_mp3.play()
 }
