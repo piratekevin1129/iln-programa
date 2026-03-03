@@ -296,12 +296,11 @@
     visibility: visible;
     transition: visibility 0s 1s;
 }
-.ojos-off,.celular-off,.peatones-off{
+.ojos-off,.celular-off{
     visibility: hidden;
 }
 
-#celular,
-#peatones{
+#celular{
     position: absolute;
     width: auto;
     height: 50%;
@@ -313,8 +312,7 @@
 #peatones{
     top: 5%;
 }
-#celular-img,
-#peatones-img{
+#celular-img{
     position: relative;
     width: auto;
     height: 100%;
@@ -366,7 +364,38 @@
         opacity: 0;
     }
 }
-.peatones-on #peatones-img{
+
+/****peaton****/
+
+#peatones{
+    position: absolute;
+}
+#peatones-img{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.peatones-on{
+    opacity: 1;
+    filter: blur(0px);
+    animation: animacion-peaton-on 10s 1 forwards ease-in;
+}
+@keyframes animacion-peaton-on {
+    0%{
+        width: 1.97%;
+        height: 4.44%;
+        left: 49.11%;
+        top: 36.29%;
+    }
+    100%{
+        width: 34.27%;
+        height: 76.94%;
+        left: 31.97%;
+        top: 0%;
+    }
+}
+/*.peatones-on #peatones-img{
     animation: animacion-peatones-img 0.5s infinite linear;
 }
 @keyframes animacion-peatones-img{
@@ -376,7 +405,21 @@
     50%{
         transform: scale(1.02);
     }
+}*/
+
+.peatones-off{
+    width: 34.27%;
+    height: 76.94%;
+    left: 31.97%;
+    top: 0%;
+    filter: blur(10px);
+    opacity: 0;
+    visibility: hidden;
+
+    transition: filter 0.3s, opacity 0.3s, visibility 0.3s;
 }
+
+/*************/
 
 #botones-container{
     position: absolute;

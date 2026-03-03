@@ -87,8 +87,11 @@ function startGame(){
     },3000)
 }
 
+var animacion_peatones = null;
+
 function setCaso(){
     actual_caso = casos_data[actual_caso_ind]
+    //actual_caso = 4
     getE('cortina').className = 'cortina-on'
     animacion_cortina = setTimeout(function(){
         clearTimeout(animacion_cortina)
@@ -118,6 +121,12 @@ function setCaso(){
             getE('celular').className = 'celular-on'
             celular_mp3.play()
         }else if(casos[actual_caso].id==5){
+            animacion_peatones = setTimeout(function(){
+                clearTimeout(animacion_peatones)
+                animacion_peatones = null
+
+                clickOpcion(0)
+            },10000)
             getE('peatones').className = 'peatones-on'
         }
         
@@ -134,6 +143,8 @@ function setCaso(){
 
 function clickOpcion(o){
     getE('instruccion').className = 'instruccion-off'
+    clearTimeout(animacion_peatones)
+    animacion_peatones = null
     
     if(o==casos[actual_caso].correct){
         getE('cortina').className = 'cortina-on'
@@ -193,6 +204,7 @@ function clickOpcion(o){
         getE('ojos').className = 'ojos-off'
         getE('celular').className = 'celular-off'
         getE('peatones').className = 'peatones-off'
+        clearTimeout(animacion_peatones)
         
         getE('botones-container').className = 'botones-container-off'
         car_mp3.pause()
